@@ -1,0 +1,118 @@
+Create a table :
+
+create table musician(id int, name String , address string, number int,song_id int) comment ‘musician details’
+row format delimited fields terminated by '\t' lines terminated by '\n' stored as textfile;
+
+
+create table song(song_id int , name string, auther string ,type string , musical_key string )
+comment ‘song details’ row format delimited fields terminated by '\t' lines terminated by '\n' stored as textfile;
+
+
+
+
+
+create table album(song_id int , name string , copyright_date string , format string) comment ‘album details’
+ 
+row format delimited fields terminated by '\t' lines terminated by '\n' stored as textfile;
+
+
+Insert / Load Data into the table:
+
+load data inpath '/user/hadoop/project/aa.txt' into table musician;
+
+
+load data inpath '/user/Hadoop/project/bb.txt' into table song;
+
+
+load data inpath '/user/hadoop/project/cc.txt' into table album;
+Answer for the Queries in the project :
+1	. musician(id int, name String , address string, number int,song_id int) song(song_id int , name string, auther string ,type string , musical_key string ) album(song_id int , name string , copyright_date string , format string)
+2	. create table musician(id int, name String , address string, number int,song_id int)
+comment ‘musician details’ row format delimited fields terminated by '\t' lines terminated by '\n' stored as textfile;
+ 
+create table song(song_id int , name string, auther string ,type string , musical_key string )
+comment ‘song details’ row format delimited fields terminated by '\t' lines terminated by '\n' stored as textfile;
+create table album(song_id int , name string , copyright_date string , format string) comment ‘album details’
+row format delimited fields terminated by '\t' lines terminated by '\n' stored as textfile;
+3	. load data inpath '/user/hadoop/project/aa.txt' into table musician;
+
+
+load data inpath '/user/Hadoop/project/bb.txt' into table song;
+
+
+load data inpath '/user/hadoop/project/cc.txt' into table album; 4 . select * from musician;
+select * from song; select * from album;
+select * from musician where address=’vijayawada’; select * from song where song_id=’30487’;
+ 
+5 . select * from song where type=’jazz’;
+
+
+
+ 
+
+
+Create a table :
+ 
+( code in hbase)
+ 
+
+create ‘musician’,’id’,’name’,’address’,’number’,’song_id’ create ‘song’,’song_id’,’name’,’auther’,’type’,’musical_key’
+create ‘album’, ’song_id’ ,’name’, ’copyright_date ‘ , ’format’
+
+
+Insert / Load Data into the table:
+
+put ‘musician’,’1’,’details:id’,’1’
+
+put ‘musician’,’1’,’details:name’,’xxxxxx’
+
+put ‘musician’,’1’,’details:address’,’vijayawada’ put ‘musician’,’1’,’details:number’,’987654321’ put ‘musician’,’1’,’details:song_id’,’xxxxxxxx’
+
+
+put ‘song’,’1’,’details:song_id’,’xxxxxxxxxx’ put ‘song’,’1’,’details:name’,’closer’
+put   ‘song’,’1’,’details:auther’,’xxxxx’
+
+put ‘song’,’1’,’details:type’,’jazz’
+
+put ‘song’,’1’,’details:musical_key’,’C’
+
+
+put ‘album’,’1’,’details:song_id’,’xxxxxxxxxx’
+ 
+put ‘album’,’1’,’details:name’,’closer’
+
+put ‘album’,’1’,’details:copyright_date’,’2019-08-20’ put ‘album’,’1’,’details:format’,’CD’
+
+
+Answer for the Queries in the project :
+
+1	. ‘musician’,’id’,’name’,’address’,’number’,’song_id’
+
+‘song’,’song_id’,’name’,’auther’,’type’,’musical_key’ ‘album’, ’song_id’ ,’name’, ’copyright_date ‘ , ’format’
+2	. create ‘musician’,’id’,’name’,’address’,’number’,’song_id’
+
+create ‘song’,’song_id’,’name’,’auther’,’type’,’musical_key’ create ‘album’, ’song_id’ ,’name’, ’copyright_date ‘ , ’format’
+3	. put ‘musician’,’1’,’details:id’,’1’
+
+put ‘musician’,’1’,’details:name’,’xxxxxxx’
+
+put ‘musician’,’1’,’details:address’,’vijayawada’ put ‘musician’,’1’,’details:number’,’987654321’ put ‘musician’,’1’,’details:song_id’,’xxxxxxxx’
+
+
+put ‘song’,’1’,’details:song_id’,’xxxxxxxxx’ put ‘song’,’1’,’details:name’,’closer’
+put ‘song’,’1’,’details:auther’,’xxxxxxxxx’ put ‘song’,’1’,’details:type’,’jazz’
+put ‘song’,’1’,’details:musical_key’,’C’
+ 
+
+
+put ‘album’,’1’,’details:song_id’,’xxxxxxxxxxx’ put ‘album’,’1’,’details:name’,’closer’
+put ‘album’,’1’,’details:copyright_date’,’2019-08-20’ put ‘album’,’1’,’details:format’,’CD’
+4	. put ‘musician’,’1’,’details:id’,’1’
+
+put ‘song’,’1’,’details:song_id’,’xxxxxxxxxx’
+
+put ‘album’,’1’,’details:song_id’,’xxxxxxxxxxxx’ get ‘musician’,’1’
+get ‘song’,’1’
+
+get ‘album’,1’ scan ‘musician’ scan ‘song’ scan ‘album’
+ 
